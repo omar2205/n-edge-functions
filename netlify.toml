@@ -2,6 +2,9 @@
   publish = 'dist/'
   command = 'npm run build'
 
+[[edge_functions]]
+path = "/api/todos"
+function = "todos"
 
 [[edge_functions]]
 path = "/api/todo"
