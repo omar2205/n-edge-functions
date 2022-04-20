@@ -32,7 +32,13 @@ async function getRedis() {
   return redis
 }
 
-export { getObj, getRedis }
+function abort(errMsg: string) {
+  return new Response(JSON.stringify({ msg: errMsg || 'error', code: 500 }), {
+    status: 500,
+  })
+}
+
+export { abort, getObj, getRedis }
 export default {
-  text: 'util'
+  text: 'util',
 }
