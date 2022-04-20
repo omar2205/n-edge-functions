@@ -4,6 +4,7 @@ import { getObj, getRedis } from './utils.ts'
 
 export default async (req: Request, ctx: any) => {
   return new Response(':P')
+  /*
   ctx.log('> start')
   const redis = await getRedis()
   if (!redis)
@@ -20,4 +21,5 @@ export default async (req: Request, ctx: any) => {
   )
 
   return new Response(JSON.stringify({ reqId: nanoid(16), todos }, null, 2))
+  */
 }
