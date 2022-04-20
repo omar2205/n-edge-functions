@@ -11,7 +11,12 @@ export default async (req: Request, ctx: any) => {
       const { title, done } = await req.json()
       if (!title || !done) return abort()
 
-      await redis.hset(id, { title, done, timestamp: new Date() })
+      await redis.hset(id, {
+        id: id,
+        title: title,
+        done: done,
+        timestamp: new Date().toJSON(),
+      })
       return new Response(
         JSON.stringify({
           msg: 'added',

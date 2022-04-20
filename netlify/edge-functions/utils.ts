@@ -32,7 +32,7 @@ async function getRedis() {
   return redis
 }
 
-function abort(errMsg: string) {
+function abort(errMsg?: string) {
   return new Response(JSON.stringify({ msg: errMsg || 'error', code: 500 }), {
     status: 500,
   })
