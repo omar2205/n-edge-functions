@@ -12,6 +12,7 @@ export default async (req: Request, ctx: any) => {
     })
 
   ctx.log('-- redis working?')
+  ctx.log(await redis.get('hello'))
 
   const todosKeys = await redis.keys('todo_')
   ctx.log('-- keys', todosKeys)
