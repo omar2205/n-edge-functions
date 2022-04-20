@@ -1,12 +1,12 @@
 import { nanoid } from 'https://deno.land/x/nanoid@v3.0.0/mod.ts'
-import { abort, getRedis } from './utils.ts'
+import { abort, okResponse, getRedis } from './common/utils.ts'
 
-export default async (req: Request, ctx: any) => {
+export default async (req: Request) => {
   const redis = await getRedis()
   if (!redis) return abort('REDIS_ERROR')
 
   switch (req.method) {
-    case 'POST':
+    case 'POST': {
       const id = `todo_${nanoid()}`
       const { title, done } = await req.json()
       if (!title || !done) return abort()
@@ -17,15 +17,30 @@ export default async (req: Request, ctx: any) => {
         done: done,
         timestamp: new Date().toJSON(),
       })
-      return new Response(
-        JSON.stringify({
-          msg: 'added',
-          code: 100,
+      return okResponse('added')
+    }
+    case 'PUT': {
+      const { title, done, id } = await req.json()
+      if (title && done && id) {
+        await redis.hset(id, {
+          id: id,
+          title: title,
+          done: done,
+          timestamp: new Date().toJSON(),
         })
-      )
-      break
-    case 'DELETE':
-      return 'no delete'
+        return okResponse('updated')
+      } else {
+        return abort('bad request')
+      }
+    }
+    case 'DELETE': {
+      const { id } = await req.json()
+      if (id) {
+        await redis.del(id)
+        return okResponse('deleted')
+      }
+      return abort('bad request')
+    }
   }
 
   return new Response('Nothing to do')

@@ -1,48 +1,72 @@
-# Svelte + TS + Vite
+## API
 
-This template should help get you started developing with Svelte and TypeScript in Vite.
+```
+todo: {
+  id: string
+  title: string
+  done: bool
+  timestamp: date JSON
+}
+ex:
+  {
+    "id": "todo_UjUzlndwwg3AQqGI-MliD",
+    "title": "create the frontend",
+    "done": "false",
+    "timestamp": "2022-04-20T08:30:01.990Z"
+  }
+```
 
-## Recommended IDE Setup
+#### GET `/api/todos`
 
-[VS Code](https://code.visualstudio.com/) + [Svelte](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode).
+Get all todos
 
-## Need an official Svelte framework?
+Return: array of all todos
 
-Check out [SvelteKit](https://github.com/sveltejs/kit#readme), which is also powered by Vite. Deploy anywhere with its serverless-first approach and adapt to various platforms, with out of the box support for TypeScript, SCSS, and Less, and easily-added support for mdsvex, GraphQL, PostCSS, Tailwind CSS, and more.
+#### POST `/api/todo`
 
-## Technical considerations
+Add a todo
 
-**Why use this over SvelteKit?**
+Request body: `{title: string, done: 'true|false'}`
 
-- It brings its own routing solution which might not be preferable for some users.
-- It is first and foremost a framework that just happens to use Vite under the hood, not a Vite app.
-  `vite dev` and `vite build` wouldn't work in a SvelteKit environment, for example.
+Return:
 
-This template contains as little as possible to get started with Vite + TypeScript + Svelte, while taking into account the developer experience with regards to HMR and intellisense. It demonstrates capabilities on par with the other `create-vite` templates and is a good starting point for beginners dipping their toes into a Vite + Svelte project.
+1. `{ msg: 'added', code: 100 }` if successful
+2. `{ msg: 'error|error msg', code: 500 }` if failed
 
-Should you later need the extended capabilities and extensibility provided by SvelteKit, the template has been structured similarly to SvelteKit so that it is easy to migrate.
+#### PUT `/api/todo`
 
-**Why `global.d.ts` instead of `compilerOptions.types` inside `jsconfig.json` or `tsconfig.json`?**
+Update(replace) a todo
 
-Setting `compilerOptions.types` shuts out all other types not explicitly listed in the configuration. Using triple-slash references keeps the default TypeScript setting of accepting type information from the entire workspace, while also adding `svelte` and `vite/client` type information.
+Request body: `{id: string, title: string, done: 'true|false'}`
 
-**Why include `.vscode/extensions.json`?**
+Return:
 
-Other templates indirectly recommend extensions via the README, but this file allows VS Code to prompt the user to install the recommended extension upon opening the project.
+1. `{ msg: 'updated', code: 100 }` if successful
+2. `{ msg: 'error|error msg', code: 500 }` if failed
 
-**Why enable `allowJs` in the TS template?**
+#### DELETE `/api/todo/:id`
 
-While `allowJs: false` would indeed prevent the use of `.js` files in the project, it does not prevent the use of JavaScript syntax in `.svelte` files. In addition, it would force `checkJs: false`, bringing the worst of both worlds: not being able to guarantee the entire codebase is TypeScript, and also having worse typechecking for the existing JavaScript. In addition, there are valid use cases in which a mixed codebase may be relevant.
+Delete a todo
 
-**Why is HMR not preserving my local component state?**
+~~Request body: `{id: string, title: string, done: 'true|false'}`~~
 
-HMR state preservation comes with a number of gotchas! It has been disabled by default in both `svelte-hmr` and `@sveltejs/vite-plugin-svelte` due to its often surprising behavior. You can read the details [here](https://github.com/rixo/svelte-hmr#svelte-hmr).
+Return:
 
-If you have state that's important to retain within a component, consider creating an external store which would not be replaced by HMR.
+1. `{ msg: 'deleted', code: 100 }` if successful
+2. `{ msg: 'error|error msg', code: 500 }` if failed
 
-```ts
-// store.ts
-// An extremely simple external store
-import { writable } from 'svelte/store'
-export default writable(0)
+
+### utils
+
+```js
+// get date 20 Apr 2022
+new Intl.DateTimeFormat('en-GB', {
+  month: 'short',
+  year: 'numeric',
+  day: 'numeric',
+}).format(n)
+// get time 10:16
+new Intl.DateTimeFormat('en-GB', { minute: 'numeric', hour: 'numeric' }).format(
+  n
+)
 ```
