@@ -3,7 +3,7 @@ import type { Todo } from '../types.ts'
 const API_URL = '/api'
 
 export async function getAllTodos() {
-  return await fetch(API_URL).then((r) => r.json())
+  return await fetch(`${API_URL}/todos`).then((r) => r.json())
 }
 
 export async function addTodo(todo: Todo) {
