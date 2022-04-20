@@ -11,13 +11,13 @@ export default async (req: Request, ctx: any) => {
       status: 500,
     })
 
-  ctx.log('-- redis working?')
+  ctx.log('-- redis working?', typeof redis)
   ctx.log(await redis.get('hello'))
 
   const todosKeys = await redis.keys('todo_')
   ctx.log('-- keys', todosKeys)
   const todos = await Promise.all(
-    todosKeys.map((k: string) => redis.hgetall(k))
+    todosKeys.map(async (k: string) => getObj(await redis.hgetall(k)))
   )
 
   return new Response(JSON.stringify({ reqId: nanoid(16), todos }, null, 2))

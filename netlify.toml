@@ -6,4 +6,3 @@
 [[edge_functions]]
 path = "/api/todo"
 function = "todo"
-environment = { REDIS_CONN = 'containers-us-west-41.railway.app|7368|default|AvMgeEZCQUVaGJYdMRw8' }
