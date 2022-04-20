@@ -14,7 +14,7 @@ export default async (req: Request, ctx: any) => {
   ctx.log('-- redis working?', typeof redis)
   ctx.log(await redis.get('hello'))
 
-  const todosKeys = await redis.keys('todo_')
+  const todosKeys = await redis.keys('todo_*')
   ctx.log('-- keys', todosKeys)
   const todos = await Promise.all(
     todosKeys.map(async (k: string) => getObj(await redis.hgetall(k)))
