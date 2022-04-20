@@ -9,7 +9,10 @@ export default async (req: Request, ctx: any) => {
       status: 500,
     })
 
+  ctx.log('-- redis working?')
+
   const todosKeys = await redis.keys('todo_')
+  ctx.log('-- keys', todosKeys)
   const todos = await Promise.all(
     todosKeys.map((k: string) => redis.hgetall(k))
   )
