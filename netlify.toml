@@ -1,8 +1,6 @@
 [build]
   publish = 'dist/'
   command = 'npm run build'
-  environment = { REDIS_CONN = 'CHANGE_ME' }
-
 
 [[edge_functions]]
 path = "/api/todo"
