@@ -18,10 +18,10 @@ function getObj(arr: any[]) {
  * Returns a Redis client
  */
 async function getRedis() {
-  const conn: string = Deno.env.get('REDIS_CONN')
-  if (conn === 'CHANGE_ME') return false
+  const conn = Deno.env.get('REDIS_CONN')
+  if (!conn || conn === 'CHANGE_ME') return false
 
-  const [hostname, port, name, password] = conn.split('|')
+  const [hostname, port, name, password] = (conn as string).split('|')
   const redis = await connect({
     hostname,
     port,
