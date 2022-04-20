@@ -4,6 +4,7 @@ import { getObj, getRedis } from './utils.ts'
 
 export default async (req: Request, ctx: any) => {
   ctx.log('> start')
+  ctx.log(Deno.env.get('REDIS_CONN'))
   const redis = await getRedis()
   if (!redis)
     return new Response('ERROR_REDIS', {
