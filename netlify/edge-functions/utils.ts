@@ -1,3 +1,5 @@
+import { connect } from 'https://deno.land/x/redis@v0.25.4/mod.ts'
+
 /**
  * Returns an object from formatted array
  * ['name', 'alice'] -> {name: 'alice'}
@@ -16,8 +18,8 @@ function getObj(arr: any[]) {
  * Returns a Redis client
  */
 async function getRedis() {
-  const conn: string | any[] = Deno.env.get('REDIS_CONN')
-  if (conn === 'CHANGE_ME' || conn.length !== 4)
+  const conn: string = Deno.env.get('REDIS_CONN')
+  if (conn === 'CHANGE_ME')
     return new Response('ERROR_REDIS', {
       status: 500,
     })
@@ -31,6 +33,5 @@ async function getRedis() {
   })
   return redis
 }
-
 
 export { getObj, getRedis }
