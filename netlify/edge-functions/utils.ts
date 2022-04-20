@@ -33,3 +33,6 @@ async function getRedis() {
 }
 
 export { getObj, getRedis }
+export default {
+  text: 'util'
+}
