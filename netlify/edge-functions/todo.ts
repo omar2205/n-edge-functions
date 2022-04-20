@@ -3,6 +3,7 @@ import { nanoid } from 'https://deno.land/x/nanoid@v3.0.0/mod.ts'
 import { getObj, getRedis } from './utils.ts'
 
 export default async (req: Request, ctx: any) => {
+  return new Response(':P')
   ctx.log('> start')
   const redis = await getRedis()
   if (!redis)
