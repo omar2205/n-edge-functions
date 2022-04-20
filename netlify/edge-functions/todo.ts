@@ -1,7 +1,7 @@
 import { connect } from 'https://deno.land/x/redis@v0.25.4/mod.ts'
 import { nanoid } from 'https://deno.land/x/nanoid/mod.ts'
 
-import { getObj, getRedis } from './utils'
+import { getObj, getRedis } from './utils.ts'
 
 export default async (req, ctx) => {
   const redis = await getRedis()
