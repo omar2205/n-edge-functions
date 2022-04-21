@@ -13,7 +13,7 @@
 
   async function handleForm(e) {
     await addTodo({
-      title: todo,
+      title: todo.title,
     })
     dispatch('submit')
   }

@@ -1,11 +1,16 @@
 <script lang="ts">
   import AddTodoForm from './components/AddTodoForm.svelte'
+import Todo from './components/Todo.svelte'
   import TodosList from './components/TodosList.svelte'
 
-  let headerOpen
+  let headerOpen, let todosKey = new Date().getTime()
 
   const toggleHeader = () => {
     headerOpen = !headerOpen
+  }
+
+  const reloadTodos = () => {
+    todosKey = new Date().getTime()
   }
 </script>
 
@@ -15,11 +20,13 @@
     <button on:click={toggleHeader}></button>
   </header>
   {#if headerOpen}
-    <AddTodoForm />
-    <!-- <input  type="text" name="todo"> -->
+    <AddTodoForm on:submit={reloadTodos}/>
   {/if}
 </main>
+
+{#key todosKey}
 <TodosList />
+{/key}
 
 <style>
   @import url('./global.css');
