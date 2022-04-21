@@ -11,7 +11,7 @@
     completed: false,
   }
 
-  async function handleForm(e) {
+  async function handleForm() {
     await addTodo(todo)
     dispatch('submit')
   }
