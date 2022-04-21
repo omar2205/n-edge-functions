@@ -13,7 +13,7 @@ export default async (req: Request, ctx: any) => {
       const { title, completed } = await req.json()
       await fetch('https://funer-thunder.free.beeceptor.com', {
         method: 'POST',
-        body: JSON({title, completed})
+        body: JSON.stringify({title, completed})
       })
       if (title === undefined || completed === undefined) return abort()
 
