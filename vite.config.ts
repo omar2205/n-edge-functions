@@ -5,8 +5,8 @@ import { svelte } from '@sveltejs/vite-plugin-svelte'
 export default defineConfig({
   plugins: [svelte()],
   server: {
-    // hmr: {
-    //   port: 3000
-    // }
+    hmr: {
+      port: 443
+    }
   }
 })

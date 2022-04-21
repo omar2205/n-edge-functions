@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { fade } from 'svelte/transition'
   import TodosList from './components/TodosList.svelte'
   let headerOpen
   const toggleHeader = () => {
@@ -12,7 +13,7 @@
     <button on:click={toggleHeader}></button>
   </header>
   {#if headerOpen}
-    <input type="text" name="todo">
+    <input in:fade out:fade="{{duration: 40 }}" type="text" name="todo">
   {/if}
 </main>
 <TodosList />
