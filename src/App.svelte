@@ -11,7 +11,9 @@
     <h1>Todo</h1>
     <button on:click={toggleHeader}></button>
   </header>
-  <input type="text" name="todo">
+  {#if headerOpen}
+    <input type="text" name="todo">
+  {/if}
 </main>
 <TodosList />
 
@@ -31,6 +33,7 @@
 
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     transition: height 200ms ease-in-out;
 
     position: fixed;

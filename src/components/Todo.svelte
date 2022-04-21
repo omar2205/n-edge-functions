@@ -27,6 +27,11 @@
     padding: 1rem 0;
     display: flex;
   }
+
+  .todo:not(:last-child) {
+    border-bottom: 1px solid #eee;
+  }
+
   .todo h3 {
     cursor: pointer;
   }

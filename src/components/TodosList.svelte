@@ -29,5 +29,9 @@
     max-width: var(--max-width);
     background-color: var(--todos-bg);
     color: var(--todos-text-color);
+    margin-block: 6rem 1rem;
+    margin-inline: auto;
+    padding: 1rem;
+    border-radius: 16px;
   }
 </style>
