@@ -1,4 +1,3 @@
-import { nanoid } from 'https://deno.land/x/nanoid@v3.0.0/mod.ts'
 import { getObj, getRedis } from './common/utils.ts'
 
 export default async (req: Request, ctx: any) => {
@@ -13,5 +12,7 @@ export default async (req: Request, ctx: any) => {
     todosKeys.map(async (k: string) => getObj(await redis.hgetall(k)))
   )
 
-  return new Response(JSON.stringify(todos))
+  return new Response(JSON.stringify(todos), {
+    headers: { 'Content-Type': 'application/json'}
+  })
 }

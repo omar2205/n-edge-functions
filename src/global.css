@@ -2,6 +2,10 @@
   --body-bg: #eee;
   --body-text-color: #222;
   --main-bg: #fff;
+  --max-width: 600px;
+
+  --todos-bg: #fff;
+  --todos-text-color: #222;
 }
 
 * {

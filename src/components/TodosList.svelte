@@ -19,5 +19,15 @@
 <div class="todos">
   {#each $todos as todo}
     <Todo {todo} on:toggle={toggle} />
+  {:else}
+    <p style:text-align="center">Loading...</p>
   {/each}
 </div>
+
+<style>
+  .todos {
+    max-width: var(--max-width);
+    background-color: var(--todos-bg);
+    color: var(--todos-text-color);
+  }
+</style>
