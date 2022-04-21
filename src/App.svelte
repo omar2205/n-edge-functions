@@ -3,7 +3,8 @@
 import Todo from './components/Todo.svelte'
   import TodosList from './components/TodosList.svelte'
 
-  let headerOpen, let todosKey = new Date().getTime()
+  let headerOpen
+  let todosKey = new Date().getTime()
 
   const toggleHeader = () => {
     headerOpen = !headerOpen
@@ -11,6 +12,7 @@ import Todo from './components/Todo.svelte'
 
   const reloadTodos = () => {
     todosKey = new Date().getTime()
+    headerOpen = !headerOpen
   }
 </script>
 
@@ -40,12 +42,13 @@ import Todo from './components/Todo.svelte'
     max-width: var(--max-width);
 
     border-radius: 0 0 16px 16px;
-    box-shadow: 0 0 20px 2px rgb(0 0 0 / 10%);
+    box-shadow: 0 0 6px 2px rgb(0 0 0 / 10%);
 
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    transition: height 200ms ease-in-out;
+    transition: 200ms ease-in-out;
+    transition-property: height, box-shadow;
 
     position: fixed;
     top: 0;
