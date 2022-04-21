@@ -11,7 +11,7 @@ export default async (req: Request, ctx: any) => {
       const { title, completed } = await req.json()
       if (!title || !completed) return abort()
 
-      console.log('>>', title, completed)
+      ctx.log('>>', title, completed)
 
       await redis.hset(id, {
         id: id,
