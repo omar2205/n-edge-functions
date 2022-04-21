@@ -1,7 +1,7 @@
 import { nanoid } from 'https://deno.land/x/nanoid@v3.0.0/mod.ts'
 import { abort, okResponse, getRedis } from './common/utils.ts'
 
-export default async (req: Request, ctx) => {
+export default async (req: Request, ctx: any) => {
   const redis = await getRedis()
   if (!redis) return abort('REDIS_ERROR')
 
@@ -11,7 +11,7 @@ export default async (req: Request, ctx) => {
       const { title, completed } = await req.json()
       if (!title || !completed) return abort()
 
-      ctx.log('>>', JSON.stringify([title, completed]))
+      console.log('>>', title, completed)
 
       await redis.hset(id, {
         id: id,
