@@ -5,6 +5,8 @@ export default async (req: Request, ctx: any) => {
   const redis = await getRedis()
   if (!redis) return abort('REDIS_ERROR')
 
+  ctx.log('-START-')
+
   switch (req.method) {
     case 'POST': {
       const id = `todo_${nanoid()}`
