@@ -16,7 +16,7 @@ export default async (req: Request, ctx) => {
       await redis.hset(id, {
         id: id,
         title: title,
-        completed: completed.toString(),
+        completed: `${completed}`,
         timestamp: new Date().toJSON(),
       })
       return okResponse('added')
