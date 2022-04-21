@@ -6,7 +6,7 @@ export async function getAllTodos() {
   return await fetch(`${API_URL}/todos`).then((r) => r.json())
 }
 
-export async function addTodo(todo: Todo) {
+export async function addTodo(title: string) {
   const { code } = await fetch(`${API_URL}/todo`, {
     method: 'POST',
     headers: { 'content-type': 'application/json' },

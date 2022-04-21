@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { fade } from 'svelte/transition'
   import AddTodoForm from './components/AddTodoForm.svelte'
   import TodosList from './components/TodosList.svelte'
 
@@ -17,7 +16,7 @@
   </header>
   {#if headerOpen}
     <AddTodoForm />
-    <input in:fade out:fade="{{duration: 40 }}" type="text" name="todo">
+    <!-- <input  type="text" name="todo"> -->
   {/if}
 </main>
 <TodosList />

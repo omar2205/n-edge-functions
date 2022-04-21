@@ -8,13 +8,13 @@ export default async (req: Request) => {
   switch (req.method) {
     case 'POST': {
       const id = `todo_${nanoid()}`
-      const { title, done } = await req.json()
-      if (!title || !done) return abort()
+      const { title, done: completed } = await req.json()
+      if (!title || !completed) return abort()
 
       await redis.hset(id, {
         id: id,
         title: title,
-        done: done,
+        completed: completed,
         timestamp: new Date().toJSON(),
       })
       return okResponse('added')
