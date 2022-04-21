@@ -6,11 +6,14 @@ export async function getAllTodos() {
   return await fetch(`${API_URL}/todos`).then(r => r.json())
 }
 
-export async function addTodo(todo: string) {
+export async function addTodo(todo: any) {
   const { code } = await fetch(`${API_URL}/todo`, {
     method: 'POST',
     headers: { 'content-type': 'application/json' },
-    body: JSON.stringify(todo),
+    body: JSON.stringify({
+      title: todo.title,
+      completed: todo.completed.toString(),
+    }),
   }).then(r => r.json())
 
   if (code === 100) return true

@@ -8,7 +8,7 @@
 
   let todo = {
     title: '',
-    completed: false,
+    completed: 'false',
   }
 
   async function handleForm() {
