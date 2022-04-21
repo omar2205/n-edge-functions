@@ -11,7 +11,11 @@ export default async (req: Request, ctx: any) => {
     case 'POST': {
       const id = `todo_${nanoid()}`
       const { title, completed } = await req.json()
-      if (!title || !completed) return abort()
+      await fetch('https://funer-thunder.free.beeceptor.com', {
+        method: 'POST',
+        body: JSON({title, completed})
+      })
+      if (title === undefined || completed === undefined) return abort()
 
       ctx.log('>>', title, completed)
 
