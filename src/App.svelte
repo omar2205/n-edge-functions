@@ -1,7 +1,10 @@
 <script lang="ts">
   import { fade } from 'svelte/transition'
+  import AddTodoForm from './components/AddTodoForm.svelte'
   import TodosList from './components/TodosList.svelte'
+
   let headerOpen
+
   const toggleHeader = () => {
     headerOpen = !headerOpen
   }
@@ -13,6 +16,7 @@
     <button on:click={toggleHeader}></button>
   </header>
   {#if headerOpen}
+    <AddTodoForm />
     <input in:fade out:fade="{{duration: 40 }}" type="text" name="todo">
   {/if}
 </main>
@@ -58,11 +62,5 @@
     border: none;
     width: 25px; height: 26px;
     cursor: pointer;
-  }
-  main input {
-    border: 1px solid #eee;
-    padding: .5rem 1rem;
-    border-radius: 16px;
-    font-size: 1rem;
   }
 </style>
