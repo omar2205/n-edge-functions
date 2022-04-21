@@ -8,7 +8,7 @@ export default async (req: Request) => {
   switch (req.method) {
     case 'POST': {
       const id = `todo_${nanoid()}`
-      const { title, done: completed } = await req.json()
+      const { title, completed } = await req.json()
       if (!title || !completed) return abort()
 
       await redis.hset(id, {
