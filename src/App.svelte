@@ -52,7 +52,8 @@
     width: 100%;
   }
   main header button {
-    background: url('/plus.svg') cover;
+    background: url('/plus.svg');
+    background-size: cover;
     border: none;
     width: 25px; height: 26px;
     cursor: pointer;
