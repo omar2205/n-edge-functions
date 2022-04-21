@@ -8,13 +8,11 @@
 
   let todo = {
     title: '',
-    done: false,
+    completed: false,
   }
 
   async function handleForm(e) {
-    await addTodo({
-      title: todo.title,
-    })
+    await addTodo(todo)
     dispatch('submit')
   }
 </script>
