@@ -4,10 +4,11 @@
   import { getAllTodos } from '../lib/todoService'
   import Todo from './Todo.svelte'
 
-  let todos = writable([])
+  let todos = writable(['loading'])
 
   onMount(async () => {
     $todos = [...(await getAllTodos())]
+    if($todos.length === 0) $todos[0] = 'no-todos'
   })
 
   const toggle = ({ detail: { todo } }) => {
@@ -17,11 +18,15 @@
 </script>
 
 <div class="todos">
-  {#each $todos as todo}
-    <Todo {todo} on:toggle={toggle} />
+  {#if $todos[0] === 'no-todos'}
+    <p style:text-align="center">Nothing todo. Add a new one.</p>
   {:else}
-    <p style:text-align="center">Loading...</p>
-  {/each}
+    {#each $todos as todo}
+      <Todo {todo} on:toggle={toggle} />
+    {:else}
+      <p style:text-align="center">Loading...</p>
+    {/each}
+  {/if}
 </div>
 
 <style>

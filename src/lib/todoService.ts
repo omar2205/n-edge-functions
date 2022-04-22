@@ -3,7 +3,14 @@ import type { Todo } from '../types.ts'
 const API_URL = '/api'
 
 export async function getAllTodos() {
-  return await fetch(`${API_URL}/todos`).then(r => r.json())
+  const todos = await fetch(`${API_URL}/todos`).then(async res => {
+    const t = await res.json()
+    t.forEach((_, idx, arr) => {
+      arr[idx].completed = arr[idx].completed === 'true'
+    })
+    return t
+  })
+  return todos
 }
 
 export async function addTodo(todo: any) {
