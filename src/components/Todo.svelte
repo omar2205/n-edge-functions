@@ -28,13 +28,15 @@
     display: flex;
     cursor: pointer;
   }
-
+  .todo:hover, .todo:focus {
+    background-color: #eee;
+    outline: 1px solid black;
+    border-radius: 5px;
+  }
   .todo:not(:last-child) {
     border-bottom: 1px solid #eee;
   }
 
-  .todo h3 {
-  }
   .todo h3.done {
     text-decoration: line-through;
     color: #888;
