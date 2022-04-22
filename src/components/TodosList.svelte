@@ -36,7 +36,7 @@
     color: var(--todos-text-color);
     margin-block: 6rem 1rem;
     margin-inline: auto;
-    padding: 1rem;
+    padding: 1rem 0;
     border-radius: 16px;
   }
 </style>
